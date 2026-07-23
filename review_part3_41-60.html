@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<title>英語W2 暗記テスト 41〜60</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eef2f7;color:#172033;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Yu Gothic",sans-serif}
+main{max-width:590px;margin:auto;padding:16px 12px 34px}
+.card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 10px 28px rgba(0,0,0,.08)}
+h1{font-size:22px;margin:0 0 16px}
+.start-title{font-size:27px;font-weight:900;margin:8px 0}
+.start-count{color:#667085;margin-bottom:14px}
+.notice{background:#f6f8fb;border:1px solid #dde3ec;border-radius:14px;padding:14px;margin-bottom:14px}
+.notice-title{font-size:15px;font-weight:900;margin-bottom:9px}
+.notice-list{list-style:none;padding:0;margin:0}
+.notice-item{display:grid;grid-template-columns:14px 1fr;gap:9px;margin:9px 0;align-items:start}
+.notice-dot{font-weight:900;line-height:1.55}
+.notice-text{font-size:13px;color:#475467;line-height:1.55}
+.notice-example{margin-top:7px;padding-left:0}
+.example-row{display:grid;grid-template-columns:22px 1fr;gap:7px;margin:4px 0}
+.good{color:#2563eb;font-weight:900}
+.bad{color:#dc2626;font-weight:900}
+label{display:block;font-size:13px;color:#667085;margin:18px 0 7px}
+input{width:100%;padding:15px;border:2px solid #d7dde7;border-radius:14px;font-size:18px;background:#fff;outline:none}
+input:focus{border-color:#4f46e5}
+button{width:100%;border:0;border-radius:14px;padding:15px;font-size:17px;font-weight:850;margin-top:12px}
+.primary{background:#111827;color:#fff}
+.next{background:#4f46e5;color:#fff}
+.hidden{display:none!important}
+.meta{display:flex;justify-content:space-between;color:#667085;font-size:14px;margin-bottom:10px}
+.jp{min-height:116px;padding:22px;border-radius:16px;background:#f6f8fb;display:flex;align-items:center;font-size:24px;font-weight:850;line-height:1.5}
+.result{display:none;margin-top:14px;padding:14px;border-radius:14px;line-height:1.55}
+.ok{background:#edf9f0;border:1px solid #bce4c6}
+.ng{background:#fff1f1;border:1px solid #f0c0c0}
+.answer-line{font-size:18px;font-weight:900;margin-top:6px;word-break:break-word}
+.section{background:rgba(255,255,255,.82);border-radius:12px;padding:11px;margin-top:10px}
+.section-title{font-size:12px;color:#667085;font-weight:850;margin-bottom:5px}
+.work-en{font-weight:850;line-height:1.55}
+.work-ja,.point,.basic{font-size:14px;color:#344054;margin-top:5px;line-height:1.68}
+.form-line{font-size:14px;font-weight:850;color:#172033;margin-bottom:5px}
+.banner{background:#fff7db;border:1px solid #ecd98d;border-radius:12px;padding:11px;margin-bottom:12px;font-size:14px}
+.finish h2{font-size:27px;margin-top:0}
+.score{font-size:34px;font-weight:950;margin:10px 0}
+</style>
+</head>
+<body>
+<main>
+  <h1>英語W2 暗記テスト</h1>
+
+  <section id="setup" class="card">
+    <div class="start-title">41〜60問</div>
+    <div class="start-count">間違えた問題は、全問正解するまで自動で復習します。</div>
+
+    <div class="notice">
+      <div class="notice-title">入力時の注意</div>
+      <ul class="notice-list">
+        <li class="notice-item">
+          <span class="notice-dot">・</span>
+          <div class="notice-text">
+            スペースの有無まで採点します。
+            <div class="notice-example">
+              <div class="example-row"><span class="good">○</span><span>make 人 動詞の原形</span></div>
+              <div class="example-row"><span class="bad">×</span><span>make人 動詞の原形</span></div>
+            </div>
+          </div>
+        </li>
+        <li class="notice-item">
+          <span class="notice-dot">・</span>
+          <div class="notice-text">
+            漢字や英単語も表示どおり入力してください。
+            <div class="notice-example">例：原形を原型と入力すると不正解です。</div>
+          </div>
+        </li>
+        <li class="notice-item"><span class="notice-dot">・</span><div class="notice-text">全角スペースと半角スペースは、どちらでも正解になります。</div></li>
+        <li class="notice-item"><span class="notice-dot">・</span><div class="notice-text">ピリオド（.）は入力しなくて大丈夫です。</div></li>
+        <li class="notice-item"><span class="notice-dot">・</span><div class="notice-text">疑問文は最後の「?」まで入力してください。</div></li>
+        <li class="notice-item"><span class="notice-dot">・</span><div class="notice-text">命令文は文頭を大文字で入力してください。</div></li>
+      </ul>
+    </div>
+
+    <button id="startBtn" class="primary">テスト開始</button>
+  </section>
+
+  <section id="game" class="card hidden">
+    <div id="banner" class="banner hidden"></div>
+    <div class="meta">
+      <span id="roundText"></span>
+      <span id="progress"></span>
+    </div>
+
+    <div id="jp" class="jp"></div>
+
+    <label for="answer">英語を入力</label>
+    <input id="answer" type="text" autocomplete="off" autocorrect="off" spellcheck="false">
+
+    <button id="checkBtn" class="primary">答え合わせ</button>
+
+    <div id="result" class="result">
+      <strong id="judge"></strong>
+      <div id="correct" class="answer-line"></div>
+
+      <div class="section">
+        <div class="section-title">基本形</div>
+        <div id="basic" class="basic"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">📖 ワークではこう使われている</div>
+        <div id="workEn" class="work-en"></div>
+        <div id="workJa" class="work-ja"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">💡 ポイント</div>
+        <div id="workForm" class="form-line"></div>
+        <div id="point" class="point"></div>
+      </div>
+    </div>
+
+    <button id="nextBtn" class="next hidden">次の問題</button>
+  </section>
+
+  <section id="finish" class="card finish hidden">
+    <h2>🎉 全問正解！</h2>
+    <div id="score" class="score"></div>
+    <p id="summary"></p>
+    <button id="restartBtn" class="primary">もう一度やる</button>
+  </section>
+</main>
+
+<script>
+const QUESTIONS = [{"id": 41, "jp": "ちょうど出発したところだ", "answer": "has just left", "basic": "have/has just + 過去分詞＝「ちょうど～したところだ」。", "work_en": "The train has just left the station.", "work_ja": "電車はちょうど駅を出たところだ。", "work_form": "has just left", "changed": false, "reason": "has just left がそのまま使われています。主語 The train が三人称単数なので has、leave の過去分詞は left です。"}, {"id": 42, "jp": "一度も行ったことがない", "answer": "have never been", "basic": "have never been to ～＝「～へ一度も行ったことがない」。", "work_en": "I have never been to Hokkaido to ski.", "work_ja": "私は一度も北海道へスキーに行ったことがない。", "work_form": "have never been", "changed": false, "reason": "have never been がそのまま使われています。主語が I なので have を使い、経験が一度もないことを never で表します。"}, {"id": 43, "jp": "～の状態が続いている", "answer": "have been", "basic": "have/has been + 名詞・形容詞で「ずっと～である」。", "work_en": "We have been friends for five years.", "work_ja": "私たちは5年間ずっと友人同士だ。", "work_form": "have been friends", "changed": true, "reason": "基本形は have been。ワークでは、その後ろに状態を表す friends が続いています。主語が We なので have です。"}, {"id": 44, "jp": "～してから○年たった", "answer": "have passed since", "basic": "時間 + have/has passed since ...＝「…してから時間がたった」。", "work_en": "Five years have passed since we became friends.", "work_ja": "私たちが友人になってから5年たった。", "work_form": "Five years have passed since", "changed": true, "reason": "基本形は have passed since。主語 Five years が複数扱いなので have を使い、since の後ろには「友人になった時」の文が続きます。"}, {"id": 45, "jp": "～してから○年になる", "answer": "has been ... since", "basic": "It has been + 時間 + since ...＝「…してから時間になる」。", "work_en": "It has been five years since we became friends.", "work_ja": "私たちが友人になってから5年になる。", "work_form": "It has been five years since", "changed": true, "reason": "基本形は has been ... since。ワークでは時間の部分に five years が入り、主語が形式主語 It なので has を使います。"}, {"id": 46, "jp": "なくしていた", "answer": "had lost", "basic": "had + 過去分詞＝過去完了。「過去のある時点より前に～していた」。", "work_en": "Did you know that Fred had lost his wallet?", "work_ja": "フレッドが財布をなくしたことを知っていましたか。", "work_form": "had lost", "changed": false, "reason": "had lost がそのまま使われています。「知っていた」という過去より前に財布をなくしていたため、過去完了です。"}, {"id": 47, "jp": "～しなければならない", "answer": "must", "basic": "must + 動詞の原形＝「～しなければならない」。", "work_en": "You must enter your password to access the site.", "work_ja": "そのサイトにアクセスするには、パスワードを入力しなければならない。", "work_form": "must enter", "changed": true, "reason": "基本形 must の後ろに、動詞の原形 enter が続いています。must の後ろでは三単現の s や to はつけません。"}, {"id": 48, "jp": "～でしょう（強い推量）", "answer": "will", "basic": "will は未来だけでなく、現在についての強い推量「～でしょう」にも使えます。", "work_en": "You will have the wrong number. There's no one here by that name.", "work_ja": "番号をお間違えでしょう。そのような名前の人はここにはいません。", "work_form": "will have", "changed": true, "reason": "基本形 will の後ろに動詞の原形 have が続いています。ここでは未来ではなく、状況からの強い推量を表します。"}, {"id": 49, "jp": "～してはいけない", "answer": "may not", "basic": "may not + 動詞の原形＝「～してはいけない」。許可しないことを表します。", "work_en": "You may not smoke in my room.", "work_ja": "私の部屋でたばこを吸ってはいけません。", "work_form": "may not smoke", "changed": true, "reason": "基本形 may not の後ろに動詞の原形 smoke が続いています。ここでは可能性ではなく、禁止を表します。"}, {"id": 50, "jp": "～かもしれない", "answer": "may", "basic": "may + 動詞の原形＝「～かもしれない」。", "work_en": "I may just stay at home because I have nothing to do.", "work_ja": "することがないので、ただ家にいるかもしれない。", "work_form": "may just stay", "changed": true, "reason": "基本形 may の後ろに動詞の原形 stay が続いています。just は「ただ」という意味で may と stay の間に入っています。"}, {"id": 51, "jp": "手伝うことができる", "answer": "can help", "basic": "can + 動詞の原形＝「～することができる」。", "work_en": "Let me know if I can help you.", "work_ja": "もしあなたを手伝えるようなら、知らせてください。", "work_form": "can help", "changed": false, "reason": "can help がそのまま使われています。can の後ろなので help は原形です。"}, {"id": 52, "jp": "～だろうか（ありうるだろうか）", "answer": "Can", "basic": "Can + 主語 + 動詞の原形 ...? で「～ということがありうるだろうか」。", "work_en": "Can her story be true? It sounds unbelievable.", "work_ja": "彼女の話が本当だなんてありうるだろうか。信じられない。", "work_form": "Can her story be true?", "changed": true, "reason": "基本形 Can を文頭に置いた疑問文です。Can の後ろは主語 her story、その後ろに動詞の原形 be が続きます。最後の ? が必要です。"}, {"id": 53, "jp": "～すべきである", "answer": "should be", "basic": "should + 動詞の原形＝「～すべきである」。", "work_en": "You should be seated quietly in the classroom.", "work_ja": "教室では静かに着席しているべきです。", "work_form": "should be seated", "changed": true, "reason": "基本形 should be の後ろに過去分詞 seated が続き、「着席させられた状態でいる」という受け身の形になっています。"}, {"id": 54, "jp": "荷物を運びましょうか？", "answer": "Could I carry your baggage?", "basic": "Could I + 動詞の原形 ...?＝「～しましょうか」。丁寧な申し出です。", "work_en": "Could I carry your baggage?", "work_ja": "荷物を運びましょうか。", "work_form": "Could I carry your baggage?", "changed": false, "reason": "ワークの英文を一文そのまま答える問題です。Could I の後ろは動詞の原形 carry、最後は ? が必要です。"}, {"id": 55, "jp": "～するのももっともだ", "answer": "might well", "basic": "might well + 動詞の原形＝「～するのももっともだ」。", "work_en": "Young people might well take an interest in the latest fashions.", "work_ja": "若い人たちが最新ファッションに関心を持つのももっともだ。", "work_form": "might well take", "changed": true, "reason": "基本形 might well の後ろに動詞の原形 take が続いています。take an interest in ～で「～に関心を持つ」です。"}, {"id": 56, "jp": "どうしても賛成しようとしない", "answer": "won't agree", "basic": "will not（won't）+ 動詞の原形は、強い意志の否定「どうしても～しようとしない」を表せます。", "work_en": "He won't agree with us on this point.", "work_ja": "彼はこの点について、どうしても私たちに賛成しようとしない。", "work_form": "won't agree", "changed": false, "reason": "won't agree がそのまま使われています。won't の後ろなので agree は原形です。agree with 人で「人に賛成する」です。"}, {"id": 57, "jp": "～しなければならなかった", "answer": "had to", "basic": "had to + 動詞の原形＝「～しなければならなかった」。must の過去にあたる表現です。", "work_en": "Alex had to stay home all day yesterday.", "work_ja": "アレックスは昨日、一日中家にいなければならなかった。", "work_form": "had to stay", "changed": true, "reason": "基本形 had to の後ろに動詞の原形 stay が続いています。yesterday があるため、過去の必要を表します。"}, {"id": 58, "jp": "～しないほうがよい", "answer": "had better not", "basic": "had better not + 動詞の原形＝「～しないほうがよい」。", "work_en": "You had better not eat too much.", "work_ja": "食べ過ぎないほうがよい。", "work_form": "had better not eat", "changed": true, "reason": "基本形 had better not の後ろに動詞の原形 eat が続いています。had は過去の意味ではなく、had better で1つの表現です。"}, {"id": 59, "jp": "昔は～だった・～があった", "answer": "used to be", "basic": "used to + 動詞の原形＝「昔は～だった・以前はよく～した」。", "work_en": "Ten years ago, there used to be lots of fish in this lake.", "work_ja": "10年前、この湖にはたくさんの魚がいたものだ。", "work_form": "used to be", "changed": false, "reason": "used to be がそのまま使われています。there used to be ～で「昔は～があった・いた」です。"}, {"id": 60, "jp": "～しなければならないだろう", "answer": "will have to", "basic": "will have to + 動詞の原形＝「～しなければならないだろう」。未来の必要を表します。", "work_en": "We will have to buy a new car next year.", "work_ja": "私たちは来年、新しい車を買わなければならないだろう。", "work_form": "will have to buy", "changed": true, "reason": "基本形 will have to の後ろに動詞の原形 buy が続いています。next year があるため、未来の必要を表します。"}];
+let pool=[],wrongNext=[],index=0,round=1,current=null,answered=false;
+let firstTotal=0,firstCorrect=0;
+const $=id=>document.getElementById(id);
+
+function normalize(text){
+  return text.trim().replace(/　/g," ").replace(/\s+/g," ").replace(/[.]$/,"");
+}
+
+function startGame(){
+  pool=QUESTIONS.slice();
+  wrongNext=[];index=0;round=1;
+  firstTotal=pool.length;firstCorrect=0;
+  $("setup").classList.add("hidden");
+  $("finish").classList.add("hidden");
+  $("game").classList.remove("hidden");
+  showQuestion();
+}
+
+function showQuestion(){
+  current=pool[index];answered=false;
+  $("roundText").textContent=round===1?"1周目":`${round}周目（復習）`;
+  $("progress").textContent=`${index+1} / ${pool.length}　問題${current.id}`;
+  $("jp").textContent=current.jp;
+  $("answer").value="";
+  $("answer").disabled=false;
+  $("result").style.display="none";
+  $("nextBtn").classList.add("hidden");
+  $("banner").classList.add("hidden");
+  setTimeout(()=>$("answer").focus(),100);
+}
+
+function isCorrectAnswer(typed,answer){
+  const needQuestion=answer.endsWith("?");
+  const t=typed.trim().replace(/　/g," ").replace(/\s+/g," ");
+  const a=answer.trim().replace(/　/g," ").replace(/\s+/g," ");
+  return needQuestion?t===a:normalize(t)===normalize(a);
+}
+
+function checkAnswer(){
+  if(answered)return;
+  const typed=$("answer").value;
+  if(!typed.trim())return;
+  const ok=isCorrectAnswer(typed,current.answer);
+  answered=true;
+
+  if(round===1&&ok)firstCorrect++;
+  if(!ok&&!wrongNext.some(q=>q.id===current.id))wrongNext.push(current);
+
+  $("result").className="result "+(ok?"ok":"ng");
+  $("result").style.display="block";
+  $("judge").textContent=ok?"⭕ 正解！":"❌ 不正解";
+  $("correct").textContent="正解："+current.answer;
+  $("basic").textContent=current.basic;
+  $("workEn").textContent=current.work_en;
+  $("workJa").textContent="（"+current.work_ja+"）";
+  $("workForm").textContent=current.changed
+    ?"【基本形】"+current.answer+"　→　【ワーク】"+current.work_form
+    :"【ワーク】"+current.work_form;
+  $("point").textContent=current.reason;
+  $("answer").disabled=true;
+  $("nextBtn").classList.remove("hidden");
+}
+
+function nextQuestion(){
+  index++;
+  if(index<pool.length){showQuestion();return;}
+  if(wrongNext.length===0){finishGame();return;}
+  round++;
+  pool=wrongNext.slice();
+  wrongNext=[];
+  index=0;
+  showQuestion();
+  $("banner").textContent=`前の周で間違えた ${pool.length} 問だけを復習します。`;
+  $("banner").classList.remove("hidden");
+}
+
+function finishGame(){
+  $("game").classList.add("hidden");
+  $("finish").classList.remove("hidden");
+  const percent=Math.round(firstCorrect/firstTotal*100);
+  $("score").textContent=percent+"%";
+  $("summary").textContent=`1周目は ${firstCorrect} / ${firstTotal} 正解。${round}周で全問正解しました。`;
+}
+
+$("startBtn").addEventListener("click",startGame);
+$("checkBtn").addEventListener("click",checkAnswer);
+$("nextBtn").addEventListener("click",nextQuestion);
+$("restartBtn").addEventListener("click",()=>{
+  $("finish").classList.add("hidden");
+  $("setup").classList.remove("hidden");
+});
+$("answer").addEventListener("keydown",e=>{
+  if(e.key==="Enter")answered?nextQuestion():checkAnswer();
+});
+</script>
+</body>
+</html>
