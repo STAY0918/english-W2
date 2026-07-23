@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111827">
-<title>英語W2 テスト版</title>
+<title>英語W2 テンプレート版</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#eef2f7;color:#172033;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Yu Gothic",sans-serif}
@@ -25,17 +25,20 @@ button{width:100%;border:0;border-radius:14px;padding:15px;font-size:17px;font-w
 .ok{background:#edf9f0;border:1px solid #bce4c6}
 .ng{background:#fff1f1;border:1px solid #f0c0c0}
 .answer-line{font-size:18px;font-weight:850;margin-top:6px}
-.section{background:rgba(255,255,255,.74);border-radius:12px;padding:11px;margin-top:10px}
-.section-title{font-size:12px;color:#667085;font-weight:800;margin-bottom:4px}
-.work-en{font-weight:750}
-.work-ja,.point{font-size:14px;color:#344054;margin-top:5px}
+.section{background:rgba(255,255,255,.78);border-radius:12px;padding:11px;margin-top:10px}
+.section-title{font-size:12px;color:#667085;font-weight:800;margin-bottom:5px}
+.work-en{font-weight:800;line-height:1.55}
+.work-ja,.point{font-size:14px;color:#344054;margin-top:5px;line-height:1.65}
+.compare{font-size:14px;color:#344054;line-height:1.65}
+.compare b{color:#172033}
+.arrow{text-align:center;font-weight:900;margin:3px 0}
 .banner{background:#fff7db;border:1px solid #ecd98d;border-radius:12px;padding:11px;margin-bottom:12px;font-size:14px}
 .small{font-size:12px;color:#667085;line-height:1.5;margin-top:12px}
 </style>
 </head>
 <body>
 <main>
-  <h1>英語W2 テスト版（1〜10）</h1>
+  <h1>英語W2 テンプレート版（1〜10）</h1>
 
   <section id="setup" class="card">
     <div class="row">
@@ -83,6 +86,7 @@ button{width:100%;border:0;border-radius:14px;padding:15px;font-size:17px;font-w
 
       <div class="section">
         <div class="section-title">💡 ポイント</div>
+        <div id="compareBox" class="compare"></div>
         <div id="point" class="point"></div>
       </div>
     </div>
@@ -98,7 +102,7 @@ button{width:100%;border:0;border-radius:14px;padding:15px;font-size:17px;font-w
 </main>
 
 <script>
-const QUESTIONS = [{"id": 1, "jp": "青ざめる", "answer": "turn pale", "work_en": "She turned pale when she heard the bad news.", "work_ja": "その悪い知らせを聞いて、彼女は青ざめた。", "basic": "turn + 形容詞で「～になる」。turn pale で「青ざめる」。", "point": "ワークでは過去の出来事なので、turn が turned になっています。"}, {"id": 2, "jp": "起きたままでいる", "answer": "stay awake", "work_en": "I stayed awake all night.", "work_ja": "私は一晩中、起きたままでいた。", "basic": "stay + 形容詞で「～の状態のままでいる」。stay awake で「起きたままでいる」。", "point": "ワークでは過去の話なので、stay が stayed になっています。"}, {"id": 3, "jp": "おもしろそうだ", "answer": "sound interesting", "work_en": "That story sounds interesting.", "work_ja": "その話はおもしろそうだ。", "basic": "sound + 形容詞で「～そうだ・～のように聞こえる」。", "point": "ワークでは主語 That story が三人称単数なので、sound に s がついて sounds になっています。"}, {"id": 4, "jp": "眠いと感じる", "answer": "feel sleepy", "work_en": "If you feel sleepy in class, pinch your cheek.", "work_ja": "授業中に眠いと感じたら、ほおをつねりなさい。", "basic": "feel + 形容詞で「～と感じる」。feel sleepy で「眠いと感じる」。", "point": "ワークでは主語が you なので、現在形でも feel に s はつきません。"}, {"id": 5, "jp": "人に物を送る", "answer": "send 人 物", "work_en": "Mary sent me some beautiful postcards.", "work_ja": "メアリーは私にきれいな絵はがきを何枚か送った。", "basic": "send + 人 + 物で「人に物を送る」。", "point": "ワークでは過去の出来事なので、send が sent になっています。"}, {"id": 6, "jp": "人に英語を教える", "answer": "teach English to 人", "work_en": "My father teaches English to me every Sunday.", "work_ja": "父は毎週日曜日、私に英語を教えてくれる。", "basic": "teach 物 to 人で「人に物を教える」。", "point": "ワークでは主語 My father が三人称単数なので、teach に es がついて teaches になっています。"}, {"id": 7, "jp": "人のためにドレスを作る", "answer": "make a dress for 人", "work_en": "She made a dress for her daughter.", "work_ja": "彼女は娘のためにドレスを作った。", "basic": "make 物 for 人で「人のために物を作る」。", "point": "ワークでは過去の出来事なので、make が made になっています。"}, {"id": 8, "jp": "人を怒らせる", "answer": "make 人 angry", "work_en": "The letter made me angry.", "work_ja": "その手紙は私を怒らせた。", "basic": "make + 人 + 形容詞で「人を～な状態にする」。", "point": "ワークでは過去の出来事なので、make が made になっています。"}, {"id": 9, "jp": "横になる", "answer": "lie down", "work_en": "I want to lie down on the grass.", "work_ja": "私は芝生の上で横になりたい。", "basic": "lie down で「横になる」。", "point": "ワークでは want to の後ろなので、動詞の原形 lie が使われています。lay は「～を置く」で別の動詞です。"}, {"id": 10, "jp": "～を置く・築く", "answer": "lay", "work_en": "He laid the foundation of that project.", "work_ja": "彼はその計画の基礎を築いた。", "basic": "lay は「～を置く・築く」。", "point": "ワークでは過去の出来事なので、lay が laid になっています。"}];
+const QUESTIONS = [{"id": 1, "jp": "青ざめる", "answer": "turn pale", "basic_meaning": "turn + 形容詞で「～になる」。turn pale で「青ざめる」。", "work_en": "She turned pale when she heard the bad news.", "work_ja": "その悪い知らせを聞いて、彼女は青ざめた。", "work_form": "turned pale", "difference": "基本形は turn pale。ワークでは turned pale。", "reason": "過去の出来事なので、turn → turned になっています。"}, {"id": 2, "jp": "起きたままでいる", "answer": "stay awake", "basic_meaning": "stay + 形容詞で「～の状態のままでいる」。stay awake で「起きたままでいる」。", "work_en": "I stayed awake all night.", "work_ja": "私は一晩中、起きたままでいた。", "work_form": "stayed awake", "difference": "基本形は stay awake。ワークでは stayed awake。", "reason": "過去の話なので、stay → stayed になっています。"}, {"id": 3, "jp": "おもしろそうだ", "answer": "sound interesting", "basic_meaning": "sound + 形容詞で「～そうだ・～のように聞こえる」。", "work_en": "That story sounds interesting.", "work_ja": "その話はおもしろそうだ。", "work_form": "sounds interesting", "difference": "基本形は sound interesting。ワークでは sounds interesting。", "reason": "主語 That story は三人称単数なので、sound に s がついて sounds になります。"}, {"id": 4, "jp": "眠いと感じる", "answer": "feel sleepy", "basic_meaning": "feel + 形容詞で「～と感じる」。feel sleepy で「眠いと感じる」。", "work_en": "If you feel sleepy in class, pinch your cheek.", "work_ja": "授業中に眠いと感じたら、ほおをつねりなさい。", "work_form": "feel sleepy", "difference": "", "reason": "feel sleepy がそのまま使われています。主語が you なので、現在形でも feel に s はつきません。"}, {"id": 5, "jp": "人に物を送る", "answer": "send 人 物", "basic_meaning": "send + 人 + 物で「人に物を送る」。", "work_en": "Mary sent me some beautiful postcards.", "work_ja": "メアリーは私にきれいな絵はがきを何枚か送った。", "work_form": "sent me some beautiful postcards", "difference": "基本形は send 人 物。ワークでは sent me some beautiful postcards。", "reason": "過去の出来事なので、send → sent になっています。人の部分に me、物の部分に some beautiful postcards が入っています。"}, {"id": 6, "jp": "人に英語を教える", "answer": "teach English to 人", "basic_meaning": "teach 物 to 人で「人に物を教える」。", "work_en": "My father teaches English to me every Sunday.", "work_ja": "父は毎週日曜日、私に英語を教えてくれる。", "work_form": "teaches English to me", "difference": "基本形は teach English to 人。ワークでは teaches English to me。", "reason": "主語 My father は三人称単数なので、teach に es がついて teaches になります。人の部分には me が入っています。"}, {"id": 7, "jp": "人のためにドレスを作る", "answer": "make a dress for 人", "basic_meaning": "make 物 for 人で「人のために物を作る」。", "work_en": "She made a dress for her daughter.", "work_ja": "彼女は娘のためにドレスを作った。", "work_form": "made a dress for her daughter", "difference": "基本形は make a dress for 人。ワークでは made a dress for her daughter。", "reason": "過去の出来事なので、make → made になっています。人の部分には her daughter が入っています。"}, {"id": 8, "jp": "人を怒らせる", "answer": "make 人 angry", "basic_meaning": "make + 人 + 形容詞で「人を～な状態にする」。", "work_en": "The letter made me angry.", "work_ja": "その手紙は私を怒らせた。", "work_form": "made me angry", "difference": "基本形は make 人 angry。ワークでは made me angry。", "reason": "過去の出来事なので、make → made になっています。人の部分には me が入っています。"}, {"id": 9, "jp": "横になる", "answer": "lie down", "basic_meaning": "lie down で「横になる」。", "work_en": "I want to lie down on the grass.", "work_ja": "私は芝生の上で横になりたい。", "work_form": "lie down", "difference": "", "reason": "lie down がそのまま使われています。want to の後ろなので、動詞は原形 lie のままです。"}, {"id": 10, "jp": "～を置く・築く", "answer": "lay", "basic_meaning": "lay は「～を置く・築く」。", "work_en": "He laid the foundation of that project.", "work_ja": "彼はその計画の基礎を築いた。", "work_form": "laid", "difference": "基本形は lay。ワークでは laid。", "reason": "過去の出来事なので、lay → laid になっています。lie の過去形 lay とは別物です。"}];
 let pool=[], wrongNext=[], index=0, round=1, current=null, answered=false;
 let firstTotal=0, firstCorrect=0;
 const $ = id => document.getElementById(id);
@@ -139,7 +143,6 @@ function isCorrectAnswer(typed, answer) {
   const needsQuestionMark=answer.endsWith("?");
   const t=typed.trim().replace(/　/g," ").replace(/\s+/g," ");
   const a=answer.trim().replace(/　/g," ").replace(/\s+/g," ");
-
   if(needsQuestionMark) return t===a;
   return normalize(t)===normalize(a);
 }
@@ -159,10 +162,18 @@ function checkAnswer() {
   $("result").style.display="block";
   $("judge").textContent=ok?"⭕ 正解！":"❌ 不正解";
   $("correct").textContent="正解："+current.answer;
-  $("basic").textContent=current.basic;
+  $("basic").textContent=current.basic_meaning;
   $("workEn").textContent=current.work_en;
   $("workJa").textContent="（"+current.work_ja+"）";
-  $("point").textContent=current.point;
+
+  if(current.difference) {
+    $("compareBox").innerHTML =
+      "<b>"+current.difference.split("。")[0]+"。</b>";
+  } else {
+    $("compareBox").innerHTML =
+      "<b>基本形がワークでもそのまま使われています。</b>";
+  }
+  $("point").textContent=current.reason;
 
   $("answer").disabled=true;
   $("nextBtn").classList.remove("hidden");
