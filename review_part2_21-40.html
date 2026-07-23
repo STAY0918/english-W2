@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<title>英語W2 暗記テスト 21〜40</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eef2f7;color:#172033;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Yu Gothic",sans-serif}
+main{max-width:590px;margin:auto;padding:16px 12px 34px}
+.card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 10px 28px rgba(0,0,0,.08)}
+h1{font-size:22px;margin:0 0 16px}
+.start-title{font-size:27px;font-weight:900;margin:8px 0}
+.start-count{color:#667085;margin-bottom:14px}
+.notice{background:#f6f8fb;border:1px solid #dde3ec;border-radius:14px;padding:13px 14px;margin-bottom:14px}
+.notice-title{font-size:14px;font-weight:900;margin-bottom:7px}
+.notice p{margin:5px 0;font-size:13px;color:#475467;line-height:1.55}
+label{display:block;font-size:13px;color:#667085;margin:18px 0 7px}
+input{width:100%;padding:15px;border:2px solid #d7dde7;border-radius:14px;font-size:18px;background:#fff;outline:none}
+input:focus{border-color:#4f46e5}
+button{width:100%;border:0;border-radius:14px;padding:15px;font-size:17px;font-weight:850;margin-top:12px}
+.primary{background:#111827;color:#fff}
+.next{background:#4f46e5;color:#fff}
+.hidden{display:none!important}
+.meta{display:flex;justify-content:space-between;color:#667085;font-size:14px;margin-bottom:10px}
+.jp{min-height:116px;padding:22px;border-radius:16px;background:#f6f8fb;display:flex;align-items:center;font-size:24px;font-weight:850;line-height:1.5}
+.result{display:none;margin-top:14px;padding:14px;border-radius:14px;line-height:1.55}
+.ok{background:#edf9f0;border:1px solid #bce4c6}
+.ng{background:#fff1f1;border:1px solid #f0c0c0}
+.answer-line{font-size:18px;font-weight:900;margin-top:6px;word-break:break-word}
+.section{background:rgba(255,255,255,.82);border-radius:12px;padding:11px;margin-top:10px}
+.section-title{font-size:12px;color:#667085;font-weight:850;margin-bottom:5px}
+.work-en{font-weight:850;line-height:1.55}
+.work-ja,.point,.basic{font-size:14px;color:#344054;margin-top:5px;line-height:1.68}
+.form-line{font-size:14px;font-weight:850;color:#172033;margin-bottom:5px}
+.banner{background:#fff7db;border:1px solid #ecd98d;border-radius:12px;padding:11px;margin-bottom:12px;font-size:14px}
+.finish h2{font-size:27px;margin-top:0}
+.score{font-size:34px;font-weight:950;margin:10px 0}
+</style>
+</head>
+<body>
+<main>
+  <h1>英語W2 暗記テスト</h1>
+
+  <section id="setup" class="card">
+    <div class="start-title">21〜40問</div>
+    <div class="start-count">間違えた問題は、全問正解するまで自動で復習します。</div>
+
+    <div class="notice">
+      <div class="notice-title">入力時の注意</div>
+      <p>・スペースの有無まで採点します。</p>
+      <p>・漢字や英単語も表示どおり入力してください。例：原形を原型と入力すると不正解です。</p>
+      <p>・全角スペースと半角スペースは、どちらでも正解になります。</p>
+      <p>・ピリオド（.）は入力しなくて大丈夫です。</p>
+      <p>・疑問文は最後の「?」まで入力してください。</p>
+      <p>・命令文は文頭を大文字で入力してください。</p>
+    </div>
+
+    <button id="startBtn" class="primary">テスト開始</button>
+  </section>
+
+  <section id="game" class="card hidden">
+    <div id="banner" class="banner hidden"></div>
+    <div class="meta">
+      <span id="roundText"></span>
+      <span id="progress"></span>
+    </div>
+
+    <div id="jp" class="jp"></div>
+
+    <label for="answer">英語を入力</label>
+    <input id="answer" type="text" autocomplete="off" autocorrect="off" spellcheck="false">
+
+    <button id="checkBtn" class="primary">答え合わせ</button>
+
+    <div id="result" class="result">
+      <strong id="judge"></strong>
+      <div id="correct" class="answer-line"></div>
+
+      <div class="section">
+        <div class="section-title">基本形</div>
+        <div id="basic" class="basic"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">📖 ワークではこう使われている</div>
+        <div id="workEn" class="work-en"></div>
+        <div id="workJa" class="work-ja"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">💡 ポイント</div>
+        <div id="workForm" class="form-line"></div>
+        <div id="point" class="point"></div>
+      </div>
+    </div>
+
+    <button id="nextBtn" class="next hidden">次の問題</button>
+  </section>
+
+  <section id="finish" class="card finish hidden">
+    <h2>🎉 全問正解！</h2>
+    <div id="score" class="score"></div>
+    <p id="summary"></p>
+    <button id="restartBtn" class="primary">もう一度やる</button>
+  </section>
+</main>
+
+<script>
+const QUESTIONS = [{"id": 21, "jp": "人を説得して～させる", "answer": "persuade 人 to 動詞", "basic": "persuade + 人 + to 動詞＝「人を説得して～させる」。", "work_en": "I persuaded my father to take me there.", "work_ja": "私は父を説得して、そこへ連れて行ってもらった。", "work_form": "persuaded my father to take", "changed": true, "reason": "基本形は persuade 人 to 動詞。ワークでは過去の話なので persuade → persuaded。人の部分に my father、動詞の部分に take が入っています。"}, {"id": 22, "jp": "お皿を洗いましょうか？", "answer": "Do you want me to wash the dishes?", "basic": "want + 人 + to 動詞＝「人に～してほしい」。疑問文では Do you want ...? の形になります。", "work_en": "Do you want me to wash the dishes?", "work_ja": "お皿を洗いましょうか。", "work_form": "Do you want me to wash the dishes?", "changed": false, "reason": "ワークの英文を一文そのまま答える問題です。want の後ろに me、to wash が続いています。疑問文なので文頭は Do、最後は ? が必要です。"}, {"id": 23, "jp": "～を聞く", "answer": "listen to", "basic": "listen to ～＝「～を聞く」。listen の後ろには to が必要です。", "work_en": "Listen to me carefully.", "work_ja": "私の話を注意深く聞きなさい。", "work_form": "Listen to", "changed": true, "reason": "基本形は listen to。ワークでは命令文の文頭なので Listen と大文字になっています。"}, {"id": 24, "jp": "話すのをやめてください", "answer": "Please stop talking", "basic": "stop + 動名詞で「～するのをやめる」。", "work_en": "Please stop talking and listen to me.", "work_ja": "話すのをやめて、私の話を聞いてください。", "work_form": "Please stop talking", "changed": false, "reason": "Please stop talking がそのまま使われています。stop の後ろは to talk ではなく talking です。命令文なので Please は大文字です。"}, {"id": 25, "jp": "恐れないで", "answer": "Don't be afraid", "basic": "Don't be afraid＝「恐れないで」。否定の命令文は Don't + 動詞の原形です。", "work_en": "Don't be afraid to make mistakes.", "work_ja": "間違えることを恐れないで。", "work_form": "Don't be afraid", "changed": false, "reason": "Don't be afraid がそのまま使われています。否定命令文なので Don't から始まり、be は原形です。"}, {"id": 26, "jp": "～しましょうね", "answer": "Let's ～, shall we?", "basic": "Let's ～, shall we?＝「～しましょうね」。Let's で始めた文の付加疑問は shall we? です。", "work_en": "Let's go for a walk, shall we?", "work_ja": "散歩に行きましょうね。", "work_form": "Let's go for a walk, shall we?", "changed": true, "reason": "基本形の ～ の部分に go for a walk が入っています。Let's で始めたため、後ろは shall we? になります。"}, {"id": 27, "jp": "行くのはやめましょう", "answer": "Let's not go", "basic": "Let's not + 動詞の原形＝「～しないようにしよう」。", "work_en": "Let's not go there today.", "work_ja": "今日はそこへ行くのはやめましょう。", "work_form": "Let's not go", "changed": false, "reason": "Let's not go がそのまま使われています。Let's の後ろに not を置き、go は原形です。"}, {"id": 28, "jp": "～がある（単数）", "answer": "There is", "basic": "There is + 単数名詞＝「～がある」。複数なら There are を使います。", "work_en": "There is a book on the desk.", "work_ja": "机の上に本が1冊あります。", "work_form": "There is", "changed": false, "reason": "There is がそのまま使われています。後ろの a book が単数なので is です。"}, {"id": 29, "jp": "人に～だと約束する", "answer": "promise 人 that ...", "basic": "promise + 人 + that節＝「人に～だと約束する」。", "work_en": "He promised me that he would come back soon.", "work_ja": "彼はすぐ戻ると私に約束した。", "work_form": "promised me that", "changed": true, "reason": "基本形は promise 人 that ...。ワークでは過去の話なので promise → promised。人の部分に me が入っています。"}, {"id": 30, "jp": "～に属する", "answer": "belong to", "basic": "belong to ～＝「～に属する・～のものである」。", "work_en": "The earth belongs to the solar system.", "work_ja": "地球は太陽系に属している。", "work_form": "belongs to", "changed": true, "reason": "基本形は belong to。主語 The earth が三人称単数なので belong → belongs になっています。"}, {"id": 31, "jp": "連れていく", "answer": "take", "basic": "take＝「連れていく」。if節では、未来のことでも現在形を使います。", "work_en": "If it is sunny tomorrow, I will take you to the park.", "work_ja": "明日晴れたら、あなたを公園へ連れていきます。", "work_form": "take you", "changed": false, "reason": "take がそのまま使われています。will の後ろなので動詞は原形 take です。"}, {"id": 32, "jp": "出席するだろう", "answer": "will attend", "basic": "will + 動詞の原形で未来を表します。attend＝「出席する」。", "work_en": "I don't know if he will attend the meeting.", "work_ja": "彼がその会議に出席するかどうか、私は分かりません。", "work_form": "will attend", "changed": false, "reason": "will attend がそのまま使われています。ここで if は「～なら」ではなく「～かどうか」なので、未来の will を使えます。"}, {"id": 33, "jp": "持っていた・開いた", "answer": "had", "basic": "had は have の過去形で、「持っていた」や「開いた」などを表します。", "work_en": "We had a party last night.", "work_ja": "私たちは昨夜パーティーを開いた。", "work_form": "had", "changed": false, "reason": "had がそのまま使われています。last night があるため、過去形です。"}, {"id": 34, "jp": "演奏している", "answer": "be playing", "basic": "be + 動詞ing＝「～している」。", "work_en": "They are playing music in the next room.", "work_ja": "彼らは隣の部屋で音楽を演奏している。", "work_form": "are playing", "changed": true, "reason": "基本形は be playing。主語 They が複数なので be動詞が are になり、are playing になっています。"}, {"id": 35, "jp": "腐る", "answer": "go bad", "basic": "go bad＝「腐る・悪くなる」。", "work_en": "These apples are going bad.", "work_ja": "これらのリンゴは腐りかけている。", "work_form": "are going bad", "changed": true, "reason": "基本形は go bad。今まさに変化している途中なので進行形を使い、主語 These apples が複数なので are going bad になっています。"}, {"id": 36, "jp": "手を振っていた", "answer": "was waving", "basic": "was/were + 動詞ing＝過去進行形。「～していた」。", "work_en": "She was waving her hand when I saw her.", "work_ja": "私が彼女を見たとき、彼女は手を振っていた。", "work_form": "was waving", "changed": false, "reason": "was waving がそのまま使われています。主語 She が単数で、過去のある時点で動作の途中だったためです。"}, {"id": 37, "jp": "いつも遅れて来てばかりいる", "answer": "be constantly coming late", "basic": "be constantly + 動詞ingで「いつも～してばかりいる」という不満を表せます。", "work_en": "He is constantly coming late to class.", "work_ja": "彼は授業にいつも遅れて来てばかりいる。", "work_form": "is constantly coming late", "changed": true, "reason": "基本形は be constantly coming late。主語 He が三人称単数なので be動詞が is になっています。"}, {"id": 38, "jp": "～を持っている", "answer": "have", "basic": "have＝「～を持っている」。", "work_en": "The man has a large house near the station.", "work_ja": "その男性は駅の近くに大きな家を持っている。", "work_form": "has", "changed": true, "reason": "基本形は have。主語 The man は三人称単数なので have → has になっています。"}, {"id": 39, "jp": "教えることになっている", "answer": "will be teaching", "basic": "will be + 動詞ingで、未来のある時点でしている動作や予定を表します。", "work_en": "Mr. Brown will be teaching us English next year.", "work_ja": "ブラウン先生は来年、私たちに英語を教えることになっている。", "work_form": "will be teaching", "changed": false, "reason": "will be teaching がそのまま使われています。will be の後ろなので teaching になります。"}, {"id": 40, "jp": "まだ帰宅していない", "answer": "hasn't come home yet", "basic": "have not + 過去分詞 + yet＝「まだ～していない」。", "work_en": "My brother hasn't come home yet.", "work_ja": "私の兄（弟）はまだ帰宅していない。", "work_form": "hasn't come home yet", "changed": false, "reason": "hasn't come home yet がそのまま使われています。主語 My brother が三人称単数なので has not（hasn't）を使います。come は過去分詞です。"}];
+let pool=[],wrongNext=[],index=0,round=1,current=null,answered=false;
+let firstTotal=0,firstCorrect=0;
+const $=id=>document.getElementById(id);
+
+function normalize(text){
+  return text.trim().replace(/　/g," ").replace(/\s+/g," ").replace(/[.]$/,"");
+}
+
+function startGame(){
+  pool=QUESTIONS.slice();
+  wrongNext=[];index=0;round=1;
+  firstTotal=pool.length;firstCorrect=0;
+  $("setup").classList.add("hidden");
+  $("finish").classList.add("hidden");
+  $("game").classList.remove("hidden");
+  showQuestion();
+}
+
+function showQuestion(){
+  current=pool[index];answered=false;
+  $("roundText").textContent=round===1?"1周目":`${round}周目（復習）`;
+  $("progress").textContent=`${index+1} / ${pool.length}　問題${current.id}`;
+  $("jp").textContent=current.jp;
+  $("answer").value="";
+  $("answer").disabled=false;
+  $("result").style.display="none";
+  $("nextBtn").classList.add("hidden");
+  $("banner").classList.add("hidden");
+  setTimeout(()=>$("answer").focus(),100);
+}
+
+function isCorrectAnswer(typed,answer){
+  const needQuestion=answer.endsWith("?");
+  const t=typed.trim().replace(/　/g," ").replace(/\s+/g," ");
+  const a=answer.trim().replace(/　/g," ").replace(/\s+/g," ");
+  return needQuestion?t===a:normalize(t)===normalize(a);
+}
+
+function checkAnswer(){
+  if(answered)return;
+  const typed=$("answer").value;
+  if(!typed.trim())return;
+  const ok=isCorrectAnswer(typed,current.answer);
+  answered=true;
+
+  if(round===1&&ok)firstCorrect++;
+  if(!ok&&!wrongNext.some(q=>q.id===current.id))wrongNext.push(current);
+
+  $("result").className="result "+(ok?"ok":"ng");
+  $("result").style.display="block";
+  $("judge").textContent=ok?"⭕ 正解！":"❌ 不正解";
+  $("correct").textContent="正解："+current.answer;
+  $("basic").textContent=current.basic;
+  $("workEn").textContent=current.work_en;
+  $("workJa").textContent="（"+current.work_ja+"）";
+  $("workForm").textContent=current.changed
+    ?"【基本形】"+current.answer+"　→　【ワーク】"+current.work_form
+    :"【ワーク】"+current.work_form;
+  $("point").textContent=current.reason;
+  $("answer").disabled=true;
+  $("nextBtn").classList.remove("hidden");
+}
+
+function nextQuestion(){
+  index++;
+  if(index<pool.length){showQuestion();return;}
+  if(wrongNext.length===0){finishGame();return;}
+  round++;
+  pool=wrongNext.slice();
+  wrongNext=[];
+  index=0;
+  showQuestion();
+  $("banner").textContent=`前の周で間違えた ${pool.length} 問だけを復習します。`;
+  $("banner").classList.remove("hidden");
+}
+
+function finishGame(){
+  $("game").classList.add("hidden");
+  $("finish").classList.remove("hidden");
+  const percent=Math.round(firstCorrect/firstTotal*100);
+  $("score").textContent=percent+"%";
+  $("summary").textContent=`1周目は ${firstCorrect} / ${firstTotal} 正解。${round}周で全問正解しました。`;
+}
+
+$("startBtn").addEventListener("click",startGame);
+$("checkBtn").addEventListener("click",checkAnswer);
+$("nextBtn").addEventListener("click",nextQuestion);
+$("restartBtn").addEventListener("click",()=>{
+  $("finish").classList.add("hidden");
+  $("setup").classList.remove("hidden");
+});
+$("answer").addEventListener("keydown",e=>{
+  if(e.key==="Enter")answered?nextQuestion():checkAnswer();
+});
+</script>
+</body>
+</html>
