@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<title>英語W2 暗記テスト 1〜20</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eef2f7;color:#172033;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Yu Gothic",sans-serif}
+main{max-width:590px;margin:auto;padding:16px 12px 34px}
+.card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 10px 28px rgba(0,0,0,.08)}
+h1{font-size:22px;margin:0 0 16px}
+.start-title{font-size:27px;font-weight:900;margin:8px 0}
+.start-count{color:#667085;margin-bottom:18px}
+label{display:block;font-size:13px;color:#667085;margin:18px 0 7px}
+input{width:100%;padding:15px;border:2px solid #d7dde7;border-radius:14px;font-size:18px;background:#fff;outline:none}
+input:focus{border-color:#4f46e5}
+button{width:100%;border:0;border-radius:14px;padding:15px;font-size:17px;font-weight:850;margin-top:12px}
+.primary{background:#111827;color:#fff}
+.next{background:#4f46e5;color:#fff}
+.hidden{display:none!important}
+.meta{display:flex;justify-content:space-between;color:#667085;font-size:14px;margin-bottom:10px}
+.jp{min-height:116px;padding:22px;border-radius:16px;background:#f6f8fb;display:flex;align-items:center;font-size:24px;font-weight:850;line-height:1.5}
+.result{display:none;margin-top:14px;padding:14px;border-radius:14px;line-height:1.55}
+.ok{background:#edf9f0;border:1px solid #bce4c6}
+.ng{background:#fff1f1;border:1px solid #f0c0c0}
+.answer-line{font-size:18px;font-weight:900;margin-top:6px;word-break:break-word}
+.section{background:rgba(255,255,255,.82);border-radius:12px;padding:11px;margin-top:10px}
+.section-title{font-size:12px;color:#667085;font-weight:850;margin-bottom:5px}
+.work-en{font-weight:850;line-height:1.55}
+.work-ja,.point,.basic{font-size:14px;color:#344054;margin-top:5px;line-height:1.68}
+.form-line{font-size:14px;font-weight:850;color:#172033;margin-bottom:5px}
+.banner{background:#fff7db;border:1px solid #ecd98d;border-radius:12px;padding:11px;margin-bottom:12px;font-size:14px}
+.finish h2{font-size:27px;margin-top:0}
+.score{font-size:34px;font-weight:950;margin:10px 0}
+.small{font-size:12px;color:#667085;line-height:1.5;margin-top:12px}
+</style>
+</head>
+<body>
+<main>
+  <h1>英語W2 暗記テスト</h1>
+
+  <section id="setup" class="card">
+    <div class="start-title">1〜20問</div>
+    <div class="start-count">間違えた問題は、全問正解するまで自動で復習します。</div>
+    <button id="startBtn" class="primary">テスト開始</button>
+  </section>
+
+  <section id="game" class="card hidden">
+    <div id="banner" class="banner hidden"></div>
+    <div class="meta">
+      <span id="roundText"></span>
+      <span id="progress"></span>
+    </div>
+
+    <div id="jp" class="jp"></div>
+
+    <label for="answer">英語を入力</label>
+    <input id="answer" type="text" autocomplete="off" autocorrect="off" spellcheck="false">
+
+    <button id="checkBtn" class="primary">答え合わせ</button>
+
+    <div id="result" class="result">
+      <strong id="judge"></strong>
+      <div id="correct" class="answer-line"></div>
+
+      <div class="section">
+        <div class="section-title">基本形</div>
+        <div id="basic" class="basic"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">📖 ワークではこう使われている</div>
+        <div id="workEn" class="work-en"></div>
+        <div id="workJa" class="work-ja"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">💡 ポイント</div>
+        <div id="workForm" class="form-line"></div>
+        <div id="point" class="point"></div>
+      </div>
+    </div>
+
+    <button id="nextBtn" class="next hidden">次の問題</button>
+  </section>
+
+  <section id="finish" class="card finish hidden">
+    <h2>🎉 全問正解！</h2>
+    <div id="score" class="score"></div>
+    <p id="summary"></p>
+    <button id="restartBtn" class="primary">もう一度やる</button>
+  </section>
+</main>
+
+<script>
+const QUESTIONS = [{"id": 1, "jp": "青ざめる", "answer": "turn pale", "basic": "turn pale＝「青ざめる」。turn + 形容詞で「～な状態になる」。", "work_en": "She turned pale when she heard the bad news.", "work_ja": "その悪い知らせを聞いて、彼女は青ざめた。", "work_form": "turned pale", "changed": true, "reason": "基本形は turn pale。ワークでは過去の出来事なので、turn → turned になっています。"}, {"id": 2, "jp": "起きたままでいる", "answer": "stay awake", "basic": "stay awake＝「起きたままでいる」。stay + 形容詞で「～の状態のままでいる」。", "work_en": "I stayed awake all night.", "work_ja": "私は一晩中、目を覚ましたままでいた。", "work_form": "stayed awake", "changed": true, "reason": "基本形は stay awake。ワークでは過去の話なので、stay → stayed になっています。"}, {"id": 3, "jp": "おもしろそうだ", "answer": "sound interesting", "basic": "sound interesting＝「おもしろそうだ」。sound + 形容詞で「～そうだ」。", "work_en": "That story about a dog sounds interesting.", "work_ja": "犬についてのその物語は、おもしろそうだ。", "work_form": "sounds interesting", "changed": true, "reason": "基本形は sound interesting。主語 That story about a dog が三人称単数なので、sound → sounds になっています。"}, {"id": 4, "jp": "眠いと感じる", "answer": "feel sleepy", "basic": "feel sleepy＝「眠いと感じる」。feel + 形容詞で「～と感じる」。", "work_en": "If you feel sleepy in class, pinch your cheek and keep your eyes open.", "work_ja": "授業中に眠くなったら、ほおをつねって目を開けていなさい。", "work_form": "feel sleepy", "changed": false, "reason": "feel sleepy がそのまま使われています。主語が you なので、現在形でも feel に s はつきません。"}, {"id": 5, "jp": "人に物を送る", "answer": "send 人 物", "basic": "send + 人 + 物＝「人に物を送る」。", "work_en": "Mary sent me some beautiful postcards.", "work_ja": "メアリーは私にきれいな絵はがきを何枚か送ってくれた。", "work_form": "sent me some beautiful postcards", "changed": true, "reason": "基本形は send 人 物。ワークでは過去なので send → sent。人の部分に me、物の部分に some beautiful postcards が入っています。"}, {"id": 6, "jp": "人に英語を教える", "answer": "teach English to 人", "basic": "teach English to 人＝「人に英語を教える」。teach 物 to 人の形です。", "work_en": "My father teaches English to me every Sunday.", "work_ja": "父は毎週日曜日、私に英語を教えてくれる。", "work_form": "teaches English to me", "changed": true, "reason": "基本形は teach English to 人。主語 My father が三人称単数なので teach → teaches。人の部分には me が入っています。"}, {"id": 7, "jp": "人のためにドレスを作る", "answer": "make a dress for 人", "basic": "make a dress for 人＝「人のためにドレスを作る」。make 物 for 人の形です。", "work_en": "She made a dress for her daughter.", "work_ja": "彼女は娘のためにドレスを作った。", "work_form": "made a dress for her daughter", "changed": true, "reason": "基本形は make a dress for 人。過去の話なので make → made。人の部分には her daughter が入っています。"}, {"id": 8, "jp": "人を怒らせる", "answer": "make 人 angry", "basic": "make + 人 + angry＝「人を怒らせる」。make + 人 + 形容詞の形です。", "work_en": "The letter made me angry.", "work_ja": "その手紙は私を怒らせた。", "work_form": "made me angry", "changed": true, "reason": "基本形は make 人 angry。過去の話なので make → made。人の部分には me が入っています。"}, {"id": 9, "jp": "横になる", "answer": "lie down", "basic": "lie down＝「横になる」。", "work_en": "I want to lie down on the grass.", "work_ja": "私は芝生の上で横になりたい。", "work_form": "lie down", "changed": false, "reason": "lie down がそのまま使われています。want to の後ろなので、動詞は原形 lie のままです。"}, {"id": 10, "jp": "～を置く・築く", "answer": "lay", "basic": "lay＝「～を置く・築く」。後ろに置く物が必要な他動詞です。", "work_en": "He laid the foundation of that project.", "work_ja": "彼はその計画の基礎を築いた。", "work_form": "laid", "changed": true, "reason": "基本形は lay。ワークでは過去の話なので lay → laid になっています。lie の過去形 lay とは別物です。"}, {"id": 11, "jp": "手を挙げなさい", "answer": "Raise your hand", "basic": "Raise your hand＝「手を挙げなさい」。命令文なので動詞の原形から始めます。", "work_en": "Raise your hand if you have any questions.", "work_ja": "質問があれば手を挙げてください。", "work_form": "Raise your hand", "changed": false, "reason": "Raise your hand がそのまま使われています。命令文なので文頭は大文字の Raise です。"}, {"id": 12, "jp": "昇る", "answer": "rise", "basic": "rise＝「自然に上がる・昇る」。後ろに目的語を置かない自動詞です。", "work_en": "The sun rises in the east and sets in the west.", "work_ja": "太陽は東から昇り、西に沈む。", "work_form": "rises", "changed": true, "reason": "基本形は rise。主語 The sun が三人称単数で、一般的な事実を表す現在形なので rise → rises になっています。"}, {"id": 13, "jp": "～について話し合う", "answer": "discuss", "basic": "discuss＝「～について話し合う」。discuss 自体に「～について」の意味が含まれます。", "work_en": "They always discuss global warming issues.", "work_ja": "彼らはいつも地球温暖化問題について話し合っている。", "work_form": "discuss", "changed": false, "reason": "discuss がそのまま使われています。about はつけません。主語が They なので現在形も discuss のままです。"}, {"id": 14, "jp": "人に理由を謝る", "answer": "apologize to 人 for 理由", "basic": "apologize to 人 for 理由＝「理由について人に謝る」。", "work_en": "He apologized to the professor for his rude behavior.", "work_ja": "彼は自分の失礼な行動について教授に謝った。", "work_form": "apologized to the professor for his rude behavior", "changed": true, "reason": "基本形は apologize to 人 for 理由。過去の話なので apologize → apologized。人に the professor、理由に his rude behavior が入っています。"}, {"id": 15, "jp": "～に近づく", "answer": "approach", "basic": "approach＝「～に近づく」。approach の直後に近づく対象を置き、to はつけません。", "work_en": "The bus is approaching the station.", "work_ja": "バスは駅に近づいている。", "work_form": "is approaching the station", "changed": true, "reason": "基本形は approach。今まさに近づいている途中なので、現在進行形 is approaching になっています。station の前に to は不要です。"}, {"id": 16, "jp": "～に似ている", "answer": "resemble", "basic": "resemble＝「～に似ている」。resemble の直後に似ている相手を置き、to はつけません。", "work_en": "My brother resembles my cousin.", "work_ja": "私の兄（弟）は、私のいとこに似ている。", "work_form": "resembles my cousin", "changed": true, "reason": "基本形は resemble。主語 My brother が三人称単数なので resemble → resembles。my cousin の前に to は不要です。"}, {"id": 17, "jp": "店などを経営する", "answer": "run", "basic": "run＝「店・会社などを経営する」。run には「走る」以外の意味もあります。", "work_en": "I have an uncle who runs a Japanese restaurant in Chicago.", "work_ja": "私には、シカゴで日本食レストランを経営しているおじがいる。", "work_form": "runs a Japanese restaurant", "changed": true, "reason": "基本形は run。who の先行詞 an uncle が三人称単数なので run → runs になっています。"}, {"id": 18, "jp": "人が～するのを見る", "answer": "see 人 動詞の原形", "basic": "see + 人 + 動詞の原形＝「人が～するのを見る」。動作の一部始終を見たときに使います。", "work_en": "I saw my son come down the stairs and sit at the table.", "work_ja": "私は息子が階段を下りてきて、食卓につくのを見た。", "work_form": "saw my son come", "changed": true, "reason": "基本形は see 人 動詞の原形。過去に見たので see → saw。my son の後ろは to come ではなく原形 come です。"}, {"id": 19, "jp": "人に～させる", "answer": "make 人 動詞の原形", "basic": "make + 人 + 動詞の原形＝「人に～させる」。", "work_en": "My mother made me carry her shopping bag to the parking lot.", "work_ja": "母は私に買い物袋を駐車場まで運ばせた。", "work_form": "made me carry", "changed": true, "reason": "基本形は make 人 動詞の原形。過去なので make → made。made me の後ろは to carry ではなく原形 carry です。"}, {"id": 20, "jp": "人に～させる・してもらう", "answer": "have 人 動詞の原形", "basic": "have + 人 + 動詞の原形＝「人に～させる・してもらう」。", "work_en": "Shall I have him call you when he is back?", "work_ja": "彼が帰ってきたら、あなたに電話させましょうか。", "work_form": "have him call", "changed": false, "reason": "have 人 動詞の原形の形がそのまま使われています。him の後ろは to call ではなく原形 call です。"}];
+let pool=[], wrongNext=[], index=0, round=1, current=null, answered=false;
+let firstTotal=0, firstCorrect=0;
+const $=id=>document.getElementById(id);
+
+function normalize(text){
+  return text.trim().replace(/　/g," ").replace(/\s+/g," ").replace(/[.]$/,"");
+}
+
+function startGame(){
+  pool=QUESTIONS.slice();
+  wrongNext=[]; index=0; round=1;
+  firstTotal=pool.length; firstCorrect=0;
+  $("setup").classList.add("hidden");
+  $("finish").classList.add("hidden");
+  $("game").classList.remove("hidden");
+  showQuestion();
+}
+
+function showQuestion(){
+  current=pool[index];
+  answered=false;
+  $("roundText").textContent=round===1?"1周目":`${round}周目（復習）`;
+  $("progress").textContent=`${index+1} / ${pool.length}　問題${current.id}`;
+  $("jp").textContent=current.jp;
+  $("answer").value="";
+  $("answer").disabled=false;
+  $("result").style.display="none";
+  $("nextBtn").classList.add("hidden");
+  $("banner").classList.add("hidden");
+  setTimeout(()=>$("answer").focus(),100);
+}
+
+function isCorrectAnswer(typed,answer){
+  const needQuestion=answer.endsWith("?");
+  const t=typed.trim().replace(/　/g," ").replace(/\s+/g," ");
+  const a=answer.trim().replace(/　/g," ").replace(/\s+/g," ");
+  return needQuestion ? t===a : normalize(t)===normalize(a);
+}
+
+function checkAnswer(){
+  if(answered)return;
+  const typed=$("answer").value;
+  if(!typed.trim())return;
+  const ok=isCorrectAnswer(typed,current.answer);
+  answered=true;
+
+  if(round===1&&ok)firstCorrect++;
+  if(!ok&&!wrongNext.some(q=>q.id===current.id))wrongNext.push(current);
+
+  $("result").className="result "+(ok?"ok":"ng");
+  $("result").style.display="block";
+  $("judge").textContent=ok?"⭕ 正解！":"❌ 不正解";
+  $("correct").textContent="正解："+current.answer;
+  $("basic").textContent=current.basic;
+  $("workEn").textContent=current.work_en;
+  $("workJa").textContent="（"+current.work_ja+"）";
+  $("workForm").textContent=current.changed
+    ? "【基本形】"+current.answer+"　→　【ワーク】"+current.work_form
+    : "【ワーク】"+current.work_form;
+  $("point").textContent=current.reason;
+  $("answer").disabled=true;
+  $("nextBtn").classList.remove("hidden");
+}
+
+function nextQuestion(){
+  index++;
+  if(index<pool.length){showQuestion();return;}
+  if(wrongNext.length===0){finishGame();return;}
+  round++;
+  pool=wrongNext.slice();
+  wrongNext=[];
+  index=0;
+  showQuestion();
+  $("banner").textContent=`前の周で間違えた ${pool.length} 問だけを復習します。`;
+  $("banner").classList.remove("hidden");
+}
+
+function finishGame(){
+  $("game").classList.add("hidden");
+  $("finish").classList.remove("hidden");
+  const percent=Math.round(firstCorrect/firstTotal*100);
+  $("score").textContent=percent+"%";
+  $("summary").textContent=`1周目は ${firstCorrect} / ${firstTotal} 正解。${round}周で全問正解しました。`;
+}
+
+$("startBtn").addEventListener("click",startGame);
+$("checkBtn").addEventListener("click",checkAnswer);
+$("nextBtn").addEventListener("click",nextQuestion);
+$("restartBtn").addEventListener("click",()=>{
+  $("finish").classList.add("hidden");
+  $("setup").classList.remove("hidden");
+});
+$("answer").addEventListener("keydown",e=>{
+  if(e.key==="Enter")answered?nextQuestion():checkAnswer();
+});
+</script>
+</body>
+</html>
